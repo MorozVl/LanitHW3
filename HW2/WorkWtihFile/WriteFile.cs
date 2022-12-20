@@ -11,13 +11,22 @@ namespace HW2.WorkWtihFile
     {
         public void WriteF()
         {
-            using HttpClient client = new HttpClient();
+            try
+            {
+                using HttpClient client = new HttpClient();
 
-            var responce = client.GetAsync(Console.ReadLine());
-            using StreamWriter streamWriter = new StreamWriter("C:\\tmp\\Sample1.txt");
+                var responce = client.GetAsync(Console.ReadLine());
+                using StreamWriter streamWriter = new StreamWriter("C:\\tmp\\Sample1.txt");
 
-            streamWriter.WriteLine(responce);
-            streamWriter.Close();
+                streamWriter.WriteLine(responce);
+                streamWriter.Close();
+            } 
+            catch(Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Ссылка не работает \n" + ex.Message + "\n");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+            }
         }
     }
 }
